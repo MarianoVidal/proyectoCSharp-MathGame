@@ -4,12 +4,12 @@ namespace MathGame;
 
 internal class GameEngine
 {
-    private int limiteSuperior = 10;
     private int limiteInferior = 1;
 
     internal void JuegoSuma(Random random)
     {
         int rondas = Helpers.ObtenerRondas();
+        int limiteSuperior = Helpers.ElegirDificultad();
 
         int primerNumero;
         int segundoNumero;
@@ -49,6 +49,7 @@ internal class GameEngine
     internal void JuegoResta(Random random)
     {
         int rondas = Helpers.ObtenerRondas();
+        int limiteSuperior = Helpers.ElegirDificultad();
 
         int primerNumero;
         int segundoNumero;
@@ -88,6 +89,7 @@ internal class GameEngine
     internal void JuegoMultiplicacion(Random random)
     {
         int rondas = Helpers.ObtenerRondas();
+        int limiteSuperior = Helpers.ElegirDificultad();
 
         int primerNumero;
         int segundoNumero;
@@ -127,8 +129,9 @@ internal class GameEngine
     internal void JuegoDivision()
     {
         int rondas = Helpers.ObtenerRondas();
+        int limiteSuperior = Helpers.ElegirDificultad();
 
-        int[] fracciones = Helpers.GenerarFraccionesEquivalentes(rondas);
+        int[] fracciones = Helpers.GenerarFraccionesEquivalentes(rondas, limiteSuperior);
         int curFrac = 0;
         int rondasGanadas = 0;
 

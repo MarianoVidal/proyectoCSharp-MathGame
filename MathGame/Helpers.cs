@@ -18,7 +18,43 @@ internal class Helpers
         Console.Write(" * (ENTER para continuar) ");
         Console.ReadLine();
     }
-    internal static int[] GenerarFraccionesEquivalentes(int rondas)
+    internal static int ElegirDificultad()
+    {
+        bool elegida = false;
+        int dificultad = 10;
+        string? respuesta;
+
+        while (!elegida)
+        {
+            Console.WriteLine(@" * ELIJA ALGUNA DE LAS SIGUIENTES DIFICULTADES: 
+ - FACIL (el límite superior de numeros que te puedan tocar llega hasta 10)
+ - MEDIA (el límite superior sube hasta 40)
+ - DIFICIL (límite superior de 100)");
+            Console.Write(" * ");
+            respuesta = Console.ReadLine();
+
+            switch (respuesta)
+            {
+                case "FACIL":
+                    elegida = true;
+                    break;
+                case "MEDIA":
+                    elegida = true;
+                    dificultad = 40;
+                    break;
+                case "DIFICIL":
+                    elegida = true;
+                    dificultad = 100;
+                    break;
+                default:
+                    Console.WriteLine(" * Esa dificultad no existe ");
+                    break;
+            }
+        }
+
+        return dificultad;
+    }
+    internal static int[] GenerarFraccionesEquivalentes(int rondas, int limite)
     {
         Random random = new Random();
         int[] devolver = new int[10];
@@ -33,8 +69,8 @@ internal class Helpers
 
             while (!fraccionGenerada)
             {
-                posibleNumerador = random.Next(1, 99);
-                posibleDenominador = random.Next(1, 99);
+                posibleNumerador = random.Next(1, limite);
+                posibleDenominador = random.Next(1, limite);
 
                 if (EsFraccionEquivalente(posibleNumerador, posibleDenominador))
                 {
@@ -76,6 +112,7 @@ internal class Helpers
     {
         int resultado;
         Console.WriteLine(" * ¿Cuantas rondas desea jugar? ");
+        Console.Write(" * ");
         string? respuesta = Console.ReadLine();
 
         while (String.IsNullOrEmpty(respuesta) || !int.TryParse(respuesta, out resultado) || resultado < 1)
